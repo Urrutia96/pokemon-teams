@@ -52,19 +52,27 @@
           <div
             class="hidden md:flex items-center justify-end space-x-8 md:flex-1 lg:w-0"
           >
-            <a
-              href="#"
+            <span v-if="user"
               class="whitespace-no-wrap text-lg leading-6 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900"
             >
-              Iniciar sesión
-            </a>
+              {{ user.name }}
+            </span>
             <span class="inline-flex rounded-md shadow-sm">
-              <a
-                href="#"
-                class="whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
-              >
-                Registro
-              </a>
+              <div v-if="!user">
+                <nuxt-link
+                  to="/registro"
+                  class="whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
+                >
+                  Registro
+                </nuxt-link>
+              </div> 
+              <div v-if="user">
+                <button
+                  class="whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
+                >
+                  Eliminar Cuenta
+                </button>
+              </div>
             </span>
           </div>
         </div>
@@ -134,25 +142,27 @@
               <div class="py-6 px-5 space-y-6">
                 
                 <div class="space-y-6">
-                  <span class="w-full flex rounded-md shadow-sm">
-                    <a
-                      href="#"
+                  <span class="w-full flex rounded-md shadow-sm" v-if="!user">
+                    <nuxt-link 
+                      to="/"
                       class="w-full flex items-center justify-center px-4 py-2 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
                     >
                       Registro
-                    </a>
+                    </nuxt-link>
+
                   </span>
-                  <p
+                  <p v-if="user"
                     class="text-center text-lg leading-6 font-medium text-gray-500"
                   >
-                    Existing customer?
+                    {{ user.name }}
                     <a
                       href="#"
                       class="text-red-600 hover:text-red-500 transition ease-in-out duration-150"
                     >
-                      Iniciar sesión
+                      Eliminar Cuenta
                     </a>
                   </p>
+                  
                 </div>
 
               </div>
@@ -178,8 +188,12 @@ export default {
           link: '#',
           label: 'Equipo'
         },
-      ]
+      ],
+      user: []
     }
+  },
+  mounted() {
+    this.user = JSON.parse(localStorage.getItem('user')) 
   },
   methods: {
     toggleMenu(){
