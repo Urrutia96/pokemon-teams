@@ -87,7 +87,7 @@
         leave-to-class="opacity-0 scale-95"
         >
         <div
-          class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+          class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-10"
           v-show="isOpen"
         >
           <div class="rounded-lg shadow-lg">
