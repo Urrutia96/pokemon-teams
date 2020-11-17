@@ -1,5 +1,13 @@
 # PokemonTeams
 
+## Librerias usadas
+
+Nuxtjs como proyecto base ya que da una estructura carpetas ordenadas y es construido sobre Vuejs. Tambien es un framework ssr por lo que es bueno para SEO y para estar desarrollando tiene Live reload que agiliza todo el proceso.
+
+Para consumir la API es usado el modulo de Nuxtjs [Axios module](https://axios.nuxtjs.org). 
+
+Para los estilos he usado Tailwind con el modulo de Nuxt [Tailwindcss Module](https://tailwindcss.nuxtjs.org/).
+
 ## Build Setup
 
 ```bash
