@@ -60,17 +60,18 @@
             <span class="inline-flex rounded-md shadow-sm">
               <div v-if="!user">
                 <nuxt-link
-                  to="/registro"
+                  to="/register"
                   class="whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
                 >
-                  Registro
+                  Register
                 </nuxt-link>
               </div> 
               <div v-if="user">
                 <button
+                  @click="deleteAccount"
                   class="whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
                 >
-                  Eliminar Cuenta
+                  Delete Account
                 </button>
               </div>
             </span>
@@ -144,10 +145,10 @@
                 <div class="space-y-6">
                   <span class="w-full flex rounded-md shadow-sm" v-if="!user">
                     <nuxt-link 
-                      to="/"
+                      to="/register"
                       class="w-full flex items-center justify-center px-4 py-2 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
                     >
-                      Registro
+                      Register
                     </nuxt-link>
 
                   </span>
@@ -155,12 +156,12 @@
                     class="text-center text-lg leading-6 font-medium text-gray-500"
                   >
                     {{ user.name }}
-                    <a
-                      href="#"
+                    <button
+                      @click="deleteAccount"
                       class="text-red-600 hover:text-red-500 transition ease-in-out duration-150"
                     >
-                      Eliminar Cuenta
-                    </a>
+                      Delete Account
+                    </button>
                   </p>
                   
                 </div>
@@ -182,11 +183,11 @@ export default {
       menuOptions: [
         { 
           link: '/',
-          label: 'Inicio'
+          label: 'Home'
         },
         {
-          link: '#',
-          label: 'Equipo'
+          link: '/team',
+          label: 'Team'
         },
       ],
       user: []
@@ -198,6 +199,12 @@ export default {
   methods: {
     toggleMenu(){
       this.isOpen = !this.isOpen
+    },
+    deleteAccount(){
+      localStorage.removeItem('teamOne')
+      localStorage.removeItem('teamTwo')
+      localStorage.removeItem('user')
+      this.$router.push('/register')
     }
   }
 };

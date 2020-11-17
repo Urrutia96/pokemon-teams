@@ -3,9 +3,9 @@
     class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100"
   >
     <div>
-      <a href="/">
+      <nuxt-link to="/">
         <img src="/img/logo.svg" class="w-20 h-20 fill-current text-gray-500" />
-      </a>
+      </nuxt-link>
     </div>
 
     <div
@@ -16,11 +16,7 @@
       <!-- Validation Errors -->
 
       <form @submit.prevent="submit">
-        <input
-          type="hidden"
-          name="_token"
-          value="Yq6MK4lZbXI93kS6ZLIYJ7QkAglEcoC057fickhR"
-        />
+        
         <!-- Email Address -->
         <div>
           <label class="block font-medium text-sm text-gray-700" for="name">
@@ -67,7 +63,8 @@
           />
         </div> -->
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex items-center justify-between mt-4">
+          <nuxt-link to="/" class="text-red-600 hover:text-red-900">Return Home</nuxt-link>
           <button
             type="submit"
             class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 ml-3"
